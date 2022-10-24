@@ -1,0 +1,9 @@
+*.pyc
+*.bak
+*.orig
+*~
+.env
+.idea
+tmp
+venv
+/local/

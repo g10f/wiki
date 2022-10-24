@@ -1,0 +1,49 @@
+#pragma section-numbers 1
+
+deutsche Version:  StartHilfe
+<<TableOfContents>>
+
+== Change pages ==
+You can edit a page by pressing the "edit" link. You find this at the top, in the sidebar area.
+
+The pages of the wiki can either be edited in text mode or in GUI mode. 
+
+ 1. For the text mode, you need a few details about the markup language of the wiki (see HilfeZurMoinWikiSyntax or for more details: HelpOnEditing).
+ 1. The GUI mode is more intuitive and you can start right away ([[WikiCourse/30 The graphical editor]]).
+
+== Add a new wiki page or attachment ==
+
+Creating a new wiki page or attachment is performed in 3 steps:
+
+ 1. Add a link to the new page, either as a WikiName or with brackets `[[Name With Spaces]]`
+ 1. Save the page and click the new link
+ 1. Create and edit your new page and save it
+
+=== Creating a link to an attachment ===
+
+{{{
+[[attachment:name_of_the_file.pdf]]
+}}}
+Result: [[attachment:name_of_the_file.pdf]]
+
+Brackets `{{` are used to embed (transclude/include/show) some target (often an image, but can be text).
+
+{{{
+{{attachment:moinmoin.png}}
+}}}
+Result: {{attachment:moinmoin.png}}
+
+=== Further Infos ===
+ 1. [[WikiCourse/40 Creating more pages]]
+ 1. [[WikiCourse/18 Attachments]]
+
+== Experimenting ==
+For experimenting with editing there is the page WikiSandBox.
+
+== Access Control ==
+Access Control Lists (ACL's see HelpOnAccessControlLists) allow you to control the permissions of a user or a group of users (which you define, see HelpOnGroups). 
+
+
+== Further Information ==
+ 1. WikiCourse
+ 1. HelpForUsers

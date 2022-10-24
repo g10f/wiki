@@ -1,0 +1,6 @@
+setuptools
+moin
+gunicorn
+docutils
+httplib2
+whitenoise<5

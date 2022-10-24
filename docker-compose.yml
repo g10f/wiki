@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    command: ["gunicorn", "server.wsgi:application", "--bind",  "0.0.0.0:8000", "-w", "5"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./local/data:/opt/g10f/wiki/data
+#      - ./local/config:/opt/g10f/wiki/apps/config
+    environment:
+      - G10F_CLIENT_SECRET=${G10F_CLIENT_SECRET}

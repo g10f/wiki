@@ -1,0 +1,69 @@
+#pragma section-numbers 1
+
+English Version: JumpStart
+
+<<TableOfContents>>
+
+== Seiten ändern  ==
+Die Seiten des Wikis kannst Du entweder im Text-Modus oder im GUI-Modus bearbeiten. Hierzu gibt es oben im Fenster die Links "Editieren (Text)" oder "Editieren (GUI)".
+
+ 1. Für den Text-Modus benötigt man ein paar Infos über die Auszeichnungssprache des Wikis (siehe HilfeZurMoinWikiSyntax oder für mehr Details: HilfeZumEditieren). 
+ 1. Der GUI-Modus ist intuitiv und man kann sofort loslegen ([[WikiKurs/30 Der grafische Editor]]) .
+
+== Eine neue Wiki Seite oder einen Anhang anlegen ==
+Das Anlegen einer neuen Wiki Seite oder eines Anhangs erfolgt in 3 Schritten:
+
+ 1. Zuerst fügst Du auf einer bestehenden Seite einen Link entweder als WikiName, oder mit eckigen Klammern `[[Name mit Leerzeichen]]` zu der neuen Wiki Seite/Anhang ein 
+ 1. Speichere die Seite und klicke auf den Link
+ 1. Dann erstellst Du die neue Wiki Seite oder den Anhang
+
+=== Link zu einer Wiki Seite im Text-Modus erstellen ===
+Den Link zu einer Wiki Seite kannst Du  entweder durch ein Wort mit einem Grossbuchstaben in der Mitte <<FootNote(siehe [[http://de.wikipedia.org/wiki/Binnenmajuskel#Wiki-Links|CamelCase Schreibweise]])>>  
+oder durch doppelte eckige Klammern erstellen. 
+
+{{{
+BeispielSeite
+}}}
+Ergebnis: BeispielSeite
+
+oder in eckigen Klammern:
+{{{
+[[Beispielseite]]
+}}}
+Ergebnis: [[Beispielseite]]
+
+=== Link zu einem Anhang  im Text-Modus erstellen ===
+
+{{{
+[[attachment:name_der_datei.txt]]
+}}}
+Ergebnis: [[attachment:name_der_datei.txt]]
+
+Mit geschweiften statt eckigen Klammern, wird ein Bild direkt in den Text eingefügt.
+
+{{{
+{{attachment:moinmoin.png}}
+}}}
+Ergebnis: {{attachment:moinmoin.png}}
+
+
+=== Weitere Infos ===
+ 1. [[WikiKurs/40 Anlegen von weiteren Seiten]]
+ 1. [[WikiKurs/18 Anhänge]]
+
+== Ausprobieren ==
+Zum Ausprobieren gibt es die Seiten:
+
+ * WikiSandkasten
+ 
+
+== Zugriffsberechtigungen ==
+Wenn Seiten nur von bestimmten Benutzern bearbeitet werden sollen, dann ist dies über Gruppen möglich.
+
+Die Gruppen können von den Mitglieden selbst verwaltet werden (siehe [[HilfeZuAccessControlLists#Gruppen|HilfeZuAccessControlLists#Gruppen)]]
+
+== Weitere Informationen ==
+ 1. WikiKurs
+ 1. HilfeFürBenutzer
+
+----
