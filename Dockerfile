@@ -51,7 +51,7 @@ RUN mkdir -p ${WIKI_DATA_DIR}/static
 
 COPY data data/
 COPY apps apps/
-COPY Docker/gunicorn.conf.py .apps/gunicorn.conf.py
+COPY Docker/gunicorn.conf.py apps/gunicorn.conf.py
 
 #RUN chown -R $USERNAME: $WORKDIR
 #USER $USERNAME
