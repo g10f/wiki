@@ -10,7 +10,6 @@ class Config(FarmConfig):
         token_uri=FarmConfig.base_sso_uri + '/oauth2/token/',
         userinfo_uri=FarmConfig.base_sso_uri + '/api/v2/users/me/',
         cert_uri=FarmConfig.base_sso_uri + '/oauth2/certs/',
-        application="d22e58c18f294cb09d1bd4878307bebd",
         client_id='109d95da417449b0b1509e2649ab7f34',
         client_secret=os.getenv('G10F_CLIENT_SECRET'))
     ]
@@ -31,4 +30,3 @@ class Config(FarmConfig):
     """
     interwikiname = u'G10F'
     show_interwiki = 0
-    openid_application = u"d22e58c18f294cb09d1bd4878307bebd"

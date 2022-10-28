@@ -120,9 +120,8 @@ class OpenIDConnectAuth(BaseAuth):
     logout_possible = True
     response_type = 'code'
 
-    def __init__(self, client_id, client_secret, application, auth_uri, token_uri, userinfo_uri,  # not used
+    def __init__(self, client_id, client_secret, auth_uri, token_uri, userinfo_uri,  # not used
                  cert_uri, scope='openid profile email'):
-        self.application = application
         self.scope = scope
         self.client_id = client_id
         self.client_secret = client_secret
