@@ -42,10 +42,13 @@ RUN virtualenv --python="/usr/bin/python2.7" --system-site-packages $VIRTUAL_ENV
     pip install -U pip wheel && \
     pip install -r requirements.txt
 
-
+# Open attachment in full window
 RUN sed -i "s/querystr\['do'\] = 'view'/querystr['do'] = getattr(self.cfg, 'default_do_action', 'view')/"  \
     venv/lib/python2.7/site-packages/MoinMoin/formatter/text_html.py
-#RUN  find venv/lib/python2.7/site-packages/MoinMoin/ -regextype posix-extended -regex r'^([\w-]+)\b(?<!de|en)\.MoinMoin\.po'
+
+## add log dir
+RUN mkdir -p ${WORKDIR}/logs
+
 ## add data_dir
 RUN mkdir -p ${WIKI_DATA_DIR}/static
 
@@ -55,8 +58,6 @@ COPY Docker/gunicorn.conf.py apps/gunicorn.conf.py
 
 #RUN chown -R $USERNAME: $WORKDIR
 #USER $USERNAME
-
-# - attach underlay/pages/StartHilfe
 
 # Start gunicorn
 WORKDIR $WORKDIR/apps

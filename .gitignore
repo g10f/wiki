@@ -2,7 +2,7 @@
 *.bak
 *.orig
 *~
-.env
+/.env
 .idea
 tmp
 venv
