@@ -3,9 +3,9 @@ name: ci
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 jobs:
-  docker:
+  build-and-push-image:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,8 +14,8 @@ jobs:
       - name: Get Version
         id: version
         run: |
-          # set -x
-          echo "::set-output name=version::$(python apps/version.py)"
+          set -x
+          echo "VERSION=$(python apps/version.py)" >> $GITHUB_OUTPUT
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -24,13 +24,11 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          # list of Docker images to use as base name for tags
           images: |
             g10f/wiki
-          # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
-            type=pep440,pattern={{version}},value=${{ steps.version.outputs.version }}
+            type=pep440,pattern={{version}},value=${{ steps.version.outputs.VERSION }}
             type=sha
 
       - name: Set up Docker Buildx
@@ -51,3 +49,44 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  deploy:
+    needs: build-and-push-image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: g10f/deployment
+          ref: main
+          token: ${{ secrets.PAT }}
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1
+
+      - run: |
+          curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+          sudo dpkg -i session-manager-plugin.deb
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          config: |
+            Host g10f-wiki
+              ProxyCommand sh -c "aws ssm start-session --region eu-central-1 --target i-0791c2c972a049104 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+              User ubuntu
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install -r requirements.txt
+          ansible-playbook deploy.yml -D -l g10f-wiki
+        env:
+          ANSIBLE_VAULT_IDENTITY_LIST: vault-password-file.sh
+          ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
