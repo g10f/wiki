@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.join(DIRNAME, 'config'))
 # use shared=True to have moin serve the builtin static docs
 # use shared=False to not have moin serve static docs
 # use shared='/my/path/to/htdocs' to serve static docs from that path
-apps_static_files = os.path.join(DIRNAME, 'static')
-root_static_files = os.path.join(DIRNAME, 'static/root')
+apps_static_files = os.path.join(DIRNAME, 'static/')
+root_static_files = os.path.join(DIRNAME, 'static/root/')
 moin_static_files = os.path.join(os.path.dirname(DIRNAME), 'venv/lib/python2.7/site-packages/MoinMoin/web/static/htdocs/')
 data_static_files = os.path.join(os.getenv('WIKI_BASE_DIR', "/opt/g10f/wiki/"), 'data/static/')
 
