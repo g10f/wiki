@@ -23,7 +23,7 @@ moin_static_files = os.path.join(os.path.dirname(DIRNAME), 'venv/lib/python2.7/s
 data_static_files = os.path.join(os.getenv('WIKI_BASE_DIR', "/opt/g10f/wiki/"), 'data/static/')
 
 moin_app = make_application(shared=False)
-application = WhiteNoise(moin_app, root=root_static_files)
+application = WhiteNoise(moin_app, root=root_static_files, max_age=WhiteNoise.FOREVER)
 application.add_files(root=apps_static_files, prefix='moin_static1911/')
 application.add_files(root=moin_static_files, prefix='moin_static1911/')
 application.add_files(root=data_static_files, prefix='static/')
