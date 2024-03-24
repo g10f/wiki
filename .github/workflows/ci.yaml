@@ -48,6 +48,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
 
   deploy:
+    if: false
     needs: build-and-push-image
     runs-on: ubuntu-latest
     steps:
@@ -75,7 +76,7 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
           config: |
             Host g10f-wiki
-              ProxyCommand sh -c "aws ssm start-session --region eu-central-1 --target i-0791c2c972a049104 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+              ProxyCommand sh -c "aws ssm start-session --region eu-central-1 --target i-09ea26be80db21c44 --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
               User ubuntu
 
       - uses: actions/setup-python@v5
