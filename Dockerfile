@@ -61,5 +61,5 @@ COPY Docker/gunicorn.conf.py apps/gunicorn.conf.py
 
 # Start gunicorn
 WORKDIR $WORKDIR/apps
-CMD ["gunicorn", "server.wsgi:application", "--bind",  "0.0.0.0:8000", "-w", "4"]
+CMD ["gunicorn", "server.wsgi:application", "-b", "0.0.0.0:8000", "--forwarded-allow-ips", "*"]
 EXPOSE 8000
