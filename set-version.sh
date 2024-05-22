@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=1.0.14
+VERSION=1.0.15
 APP=server
 
 sed -i "s/__version__ =.*/__version__ = '${VERSION}'/" apps/${APP}/__init__.py
