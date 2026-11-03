@@ -68,7 +68,7 @@ jobs:
           sudo dpkg -i session-manager-plugin.deb
 
       - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
+        uses: shimataro/ssh-key-action@87a8f067114a8ce263df83e9ed5c849953548bc3  # v2.8.1, pinned to a commit: it receives secrets
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
@@ -80,9 +80,10 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: '3.13'
+      # No --diff: the logs of a public repo are public, and a diff can show secrets (it once showed SECRET_KEY).
       - run: |
           pip install -r requirements.txt
-          ansible-playbook deploy.yml -D -l g10f-wiki
+          ansible-playbook deploy.yml -l g10f-wiki
         env:
           ANSIBLE_VAULT_IDENTITY_LIST: vault-password-file.sh
           ANSIBLE_VAULT_PASSWORD: ${{ secrets.ANSIBLE_VAULT_PASSWORD }}
